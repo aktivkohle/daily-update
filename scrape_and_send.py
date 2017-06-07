@@ -7,7 +7,8 @@ import sys
 def scrape_send():
 
     started = datetime.datetime.now()
-
+    # the following two lines were put in to check the version if it were run on an unknown server
+    # now that it is dockerised are somewhat redundant
     print ("\n", "Using Python Version: \n",sys.version, '\n')
     print ('Started', str(started), '\n')
 
