@@ -5,7 +5,10 @@ from scrape_and_send import scrape_send
 
 
 def randStart():
-    randsecs = randrange(3600)
+	# for testing use this line:
+    randsecs = randrange(10)	
+	# for production use this line:	
+    # randsecs = randrange(3600)
     print(randsecs)
     sleep(randsecs)
     # print('running.')
@@ -13,9 +16,10 @@ def randStart():
     
 
 sched = BlockingScheduler()
-# for testing
-# sched.add_job(randHello, 'interval', seconds=60)
-sched.add_job(randStart, 'interval', days=1)
+# for testing use this line:
+sched.add_job(randStart, 'interval', seconds=60)
+# for production use this line:
+# sched.add_job(randStart, 'interval', days=1)
 
 sched.start()
 
