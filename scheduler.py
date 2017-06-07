@@ -14,12 +14,10 @@ def randStart():
     # print('running.')
     scrape_send()
     
-
+# http://apscheduler.readthedocs.io/en/latest/modules/triggers/cron.html#module-apscheduler.triggers.cron
 sched = BlockingScheduler()
-# for testing use this line:
-sched.add_job(randStart, 'interval', seconds=60)
-# for production use this line:
-# sched.add_job(randStart, 'interval', days=1)
-
+sched.add_job(my_job, trigger='cron', hour='16', minute='00') # platform uses UTC time (2 hours behind)
+# second job for testing:
+sched.add_job(my_job, trigger='cron', hour='16', minute='01', second='15') 
 sched.start()
 
