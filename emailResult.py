@@ -7,12 +7,13 @@ username = config.GMAIL_ADDR
 password = config.GMAIL_PWD
 
 def sendresult(text):        
-    msg = MIMEText(text, 'plain')
+    msg = MIMEText(text)
     msg['Subject'] = config.SUBJECT 
     me = username
+    msg['From'] = me
     msg['To'] = ", ".join(config.TO)
     conn = SMTP('smtp.gmail.com:465')
     conn.set_debuglevel(True)
     conn.login(username, password)
-    conn.sendmail(me, msg['To'], msg.as_string())
+    conn.send_message(msg)
     conn.close()
