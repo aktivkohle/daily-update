@@ -1,6 +1,8 @@
 # Receive emailed updates of changes to a municipality website involving certain keywords
 
-So the application is the following - plans for new factories or buildings in your neighbourhood, which possibly pollute or ruin the ambiance are lodged with the local council. The plans are not necessarily more widely advertised, and the law is that if the plans are visible on the municipal website for 90 days and nobody says anything, permission is deemed to be granted. 
+So the application is the following - plans for new factories or buildings in your neighbourhood, which possibly pollute or ruin the ambiance are lodged with the local council. The plans are not necessarily more widely advertised, and the law is that if the plans are visible on the municipal website for 90 days and nobody says anything, permission is deemed to be granted. Remember:
+
+> *The price of liberty is eternal vigilance.*
 
 So what I have made here is a Python app that scrapes the table on the website once or twice a day with pandas, searches for search terms predefined in the config.py file (not in repository obviously), and then sends an email to several recipients who live in the area. The number of matching lines is also in the email. The schedule is managed by the Python library APScheduler and then a delay of a random number of minutes is added on top to make the daily traffic seem perhaps more human. The Python files have been put in a Docker container and deployed on an Amazon nano instance for under €5 per month.    
 
