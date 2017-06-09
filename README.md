@@ -1,8 +1,8 @@
 # Receive emailed updates of changes to a municipality website involving certain keywords
 
-A certain website is scraped once per day a random number of seconds after the same time of day, certain keywords are searched and matching lines emailed. The thing is, you don't want to remember to push a button every day, so you should just receive an email. This small set of scripts here includes what is needed to put the app in a docker container and deploy it. I have it running in a nano instance for under €5 per month.
+So the application is the following - plans for new factories or buildings in your neighbourhood, which possibly pollute or ruin the ambiance are lodged with the local council. The plans are not necessarily more widely advertised, and the law is that if the plans are visible on the municipal website for 90 days and nobody says anything, permission is deemed to be granted. 
 
-An interesting Python package APScheduler has been used to do the daily send. The municipal website is in table form and it scrapes very nicely with Pandas.
+So what I have made here is a Python app that scrapes the table on the website once or twice a day with pandas, searches for search terms predefined in the config.py file (not in repository obviously), and then sends an email to several recipients who live in the area. The number of matching lines is also in the email. The schedule is managed by the Python library APScheduler and then a delay of a random number of minutes is added on top to make the daily traffic seem perhaps more human. The Python files have been put in a Docker container and deployed on an Amazon nano instance for under €5 per month.    
 
 ## Dockerising and Deploying
 
@@ -30,4 +30,4 @@ then copy and paste back in the terminal that gigantic docker login command that
 
 `docker push 478310531824.dkr.ecr.eu-central-1.amazonaws.com/ecs-repo-1:latest`
 
-Go to AWS click on EC2 container service. When you click on repository you should see in there what was just pushed, check the time stamp. Ensuring there is a running instance in the 'cluster', create a 'task definition' for the link to the repo and then go into the cluster and tell it to run the task. 
+Go to AWS click on EC2 container service. When you click on repository you should see in there what was just pushed, check the time stamp. Ensuring there is a running instance in the 'cluster', create a 'task definition' for the link to the repo and then go into the cluster and tell it to run the task. Do not mix up 'task' and 'service' - task is what you want, service is possibly a collection of tasks. 
