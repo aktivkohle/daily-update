@@ -30,4 +30,4 @@ then copy and paste back in the terminal that gigantic docker login command that
 
 `docker push 478310531824.dkr.ecr.eu-central-1.amazonaws.com/ecs-repo-1:latest`
 
-Go to AWS click on EC2 container service. When you click on repository you should see in there what was just pushed, check the time stamp. Ensuring there is a running instance in the 'cluster', create a 'task definition' for the link to the repo and then go into the cluster and tell it to run the task. Do not mix up 'task' and 'service' - task is what you want, service is possibly a collection of tasks. 
+Go to AWS click on EC2 container service. When you click on repository you should see in there what was just pushed, check the time stamp. Ensuring there is a running instance in the 'cluster', create a 'task definition' for the link to the repo and then go into the cluster and tell it to run the task. Do not mix up 'task' and 'service' - task is what you want, service is possibly a collection of tasks. When updating the task, remember to delete old container definitions, otherwise they will also be run!
