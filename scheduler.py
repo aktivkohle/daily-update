@@ -1,4 +1,4 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.background import BlockingScheduler
 from random import randrange
 from time import sleep
 from scrape_and_send import scrape_send
@@ -12,9 +12,9 @@ def randStart():
     # print('running.')
     scrape_send()
     
-sched = BackgroundScheduler()
+sched = BlockingScheduler()
 sched.add_job(randStart, trigger='cron', hour='18', minute='10') # host platform uses UTC time (2 hours behind)
-sched.add_job(randStart, trigger='cron', hour='10', minute='10') # host platform uses UTC time (2 hours behind)
+sched.add_job(randStart, trigger='cron', hour='10', minute='25') # host platform uses UTC time (2 hours behind)
 # for adjusting the cron job see this link:
 # http://apscheduler.readthedocs.io/en/latest/modules/triggers/cron.html#module-apscheduler.triggers.cron
 sched.start()
